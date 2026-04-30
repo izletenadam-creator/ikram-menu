@@ -27,5 +27,5 @@ Sistemi manuel çentik atmadan kurtarıp tam kurumsal yapıya geçirmek için **
 *   **Günlük Kasa:** Hangi saatte kaç sipariş geldi, kaç TL ciro yapıldı?
 *   **Otomatik Referans Sayacı:** Hangi müşteri kaç sipariş getirdi ve 10'a ulaştı mı?
 *   **Stok Düşümü:** Satılan çiğköfte ve ayranın stoktan otomatik düşmesi ve bitmeye yakın kırmızı alarm vermesi.
-*   **Gizli Admin Paneli (`admin.html`):** İşletme sahibinin şifreyle (Baki.1903 vb.) girip tüm bu sistemi tek ekrandan görebileceği kokpit.
+*   **Gizli Admin Paneli (`admin.html`):** İşletme sahibinin özel bir şifreyle girip tüm bu sistemi tek ekrandan yönetebileceği merkezi kokpit.
 

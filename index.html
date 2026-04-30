@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İkram Çiğköfte - Premium Menü</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0d0d0d;
+            background-image: radial-gradient(circle at 50% 0%, #2a0808 0%, #0d0d0d 60%);
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .menu-container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(255, 60, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent 0%, transparent 40%, rgba(255, 60, 0, 0.1) 50%, transparent 60%, transparent 100%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 30px;
+        }
+        .title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #ff4500;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 69, 0, 0.4);
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ff9d00;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+        .instagram {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(220, 39, 67, 0.3);
+        }
+        
+        .category {
+            margin-bottom: 40px;
+        }
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .category-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, #ff4500, transparent);
+            margin-left: 15px;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            transition: transform 0.2s;
+        }
+        .menu-item:hover {
+            transform: translateX(10px);
+            border-bottom-color: #ff4500;
+        }
+        .item-details {
+            flex: 1;
+            padding-right: 20px;
+        }
+        .item-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #f8f8f8;
+            margin-bottom: 5px;
+        }
+        .item-desc {
+            font-size: 0.9rem;
+            color: #aaa;
+            font-weight: 300;
+        }
+        .item-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ff9d00;
+            white-space: nowrap;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        .footer-text {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 10px;
+        }
+        .phone {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ff4500;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu-container">
+    <div class="content-wrapper">
+        <div class="header">
+            <div class="title">İKRAM ÇİĞKÖFTE</div>
+            <div class="subtitle">SİMAV'IN EFSANE LEZZETLERİ</div>
+            <div class="instagram">@bakierdimensimav</div>
+        </div>
+
+        <div class="category">
+            <div class="category-title">🌯 DÜRÜM MENÜ (Ayran Hediyeli)</div>
+            
+            <div class="menu-item">
+                <div class="item-details">
+                    <div class="item-name">Klasik Çiğköfte Dürüm + Ayran</div>
+                    <div class="item-desc">Bol yeşillik, taze nane ve nar ekşisi şöleni</div>
+                </div>
+                <div class="item-price">100 ₺</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-details">
+                    <div class="item-name">Spicy Çiğköfte Dürüm + Ayran</div>
+                    <div class="item-desc">Acı severlere özel ekstra baharatlı spesiyal</div>
+                </div>
+                <div class="item-price">110 ₺</div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-title">🥪 GECE TOSTU (Ayran Hediyeli)</div>
+            
+            <div class="menu-item">
+                <div class="item-details">
+                    <div class="item-name">Bol Sucuk, Bol Kaşar + Ayran</div>
+                    <div class="item-desc">Eriyen kaşar ve kaliteli sucukla imza tostumuz</div>
+                </div>
+                <div class="item-price">150 ₺</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-details">
+                    <div class="item-name">XXX-Bol Kaşarlı Tost + Ayran</div>
+                    <div class="item-desc">Sadece kaşar isteyenlere, uzayıp giden şölen</div>
+                </div>
+                <div class="item-price">150 ₺</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-details">
+                    <div class="item-name">X-Bol Sucuk, X-Bol Kaşar + Ayran</div>
+                    <div class="item-desc">Doymak bilmeyenlere iki kat malzeme şöleni!</div>
+                </div>
+                <div class="item-price">175 ₺</div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-title">🐚 TAZE MİDYE DOLMA <span style="font-size: 1rem; color: #ff4500; font-weight: 500; margin-left: 15px; padding: 3px 10px; background: rgba(255, 69, 0, 0.1); border-radius: 20px;">(Cuma'dan Pazar'a)</span></div>
+            
+            <div class="menu-item">
+                <div class="item-details">
+                    <div class="item-name">Yarım Kilo Midye Dolma</div>
+                    <div class="item-desc">Günlük taze, bol baharatlı</div>
+                </div>
+                <div class="item-price">250 ₺</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-details">
+                    <div class="item-name">1 Kilo Midye Dolma (Kova)</div>
+                    <div class="item-desc">Arkadaş ortamlarının vazgeçilmezi</div>
+                </div>
+                <div class="item-price">500 ₺</div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-title">🍮 MEŞHUR FIRIN SÜTLAÇ</div>
+            
+            <div class="menu-item">
+                <div class="item-details">
+                    <div class="item-name">Orijinal Fırın Sütlaç</div>
+                    <div class="item-desc">Tam kıvamında klasik lezzet</div>
+                </div>
+                <div class="item-price">120 ₺</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-details">
+                    <div class="item-name">Karamelize Kapak Sütlaç</div>
+                    <div class="item-desc">Özel karamelize üst katmanıyla premium</div>
+                </div>
+                <div class="item-price">150 ₺</div>
+            </div>
+        </div>
+
+        <div class="footer" style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid rgba(255, 255, 255, 0.1);">
+            <div class="footer-text" style="margin-bottom: 20px;">Gece 01:00'e Kadar Açığız</div>
+            <a href="https://api.whatsapp.com/send/?phone=905454422626&text=Merhaba%2C%20masadan%20sipari%C5%9F%20vermek%20istiyorum." 
+               style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: #fff; text-decoration: none; padding: 15px 40px; font-size: 1.5rem; font-weight: 800; border-radius: 50px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); transition: transform 0.2s;">
+                💬 SİPARİŞİ WHATSAPP'A YAZ
+            </a>
+            <div style="font-size: 0.9rem; color: #888; margin-top: 15px;">Tıklayın ve sohbetten siparişinizi iletin.</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

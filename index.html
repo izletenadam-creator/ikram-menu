@@ -12,7 +12,6 @@
     <meta property="og:type" content="restaurant">
     <meta property="og:url" content="https://ikram-menu.vercel.app/">
     
-    <!-- Google AI / SEO LocalBusiness Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -55,17 +54,22 @@
         .category { margin-bottom: 30px; }
         .category-title { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 15px; border-bottom: 1px solid #ff4500; display: inline-block; padding-bottom: 5px; }
         
-        .menu-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid transparent; transition: 0.2s; }
+        .menu-item { display: flex; justify-content: space-between; align-items: stretch; margin-bottom: 15px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid transparent; transition: 0.2s; gap: 15px; }
         .menu-item:hover { border-color: #ff4500; background: rgba(255,255,255,0.05); }
-        .item-details { flex: 1; padding-right: 15px; }
+        .item-img-container { width: 90px; height: 90px; flex-shrink: 0; border-radius: 10px; overflow: hidden; }
+        .item-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .item-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
         .item-name { font-size: 1.1rem; font-weight: 700; color: #f8f8f8; }
         .item-desc { font-size: 0.85rem; color: #aaa; margin-top: 4px; }
+        
+        .item-actions { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; }
         .item-price { font-size: 1.2rem; font-weight: 900; color: #ff9d00; margin-bottom: 5px; }
         
-        .controls { display: flex; align-items: center; background: #222; border-radius: 30px; padding: 5px; }
-        .btn-qty { background: #333; color: #fff; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .controls { display: flex; align-items: center; background: #222; border-radius: 30px; padding: 3px; }
+        .btn-qty { background: #333; color: #fff; border: none; width: 28px; height: 28px; border-radius: 50%; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.2s; }
         .btn-qty:hover { background: #ff4500; }
-        .qty { width: 30px; text-align: center; font-weight: bold; font-size: 1.1rem; }
+        .qty { width: 25px; text-align: center; font-weight: bold; font-size: 1rem; }
         
         /* Floating Cart */
         .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #ff4500; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 100; box-shadow: 0 -10px 30px rgba(255, 69, 0, 0.3); }
@@ -110,11 +114,12 @@
     <div class="category">
         <div class="category-title">🌯 DÜRÜM MENÜ (Ayran Hediyeli)</div>
         <div class="menu-item">
-            <div class="item-details">
+            <div class="item-img-container"><img src="./assets/durum.png" alt="Dürüm"></div>
+            <div class="item-content">
                 <div class="item-name">Klasik Çiğköfte Dürüm + Ayran</div>
                 <div class="item-desc">Bol yeşillik, taze nane ve nar ekşisi şöleni</div>
             </div>
-            <div>
+            <div class="item-actions">
                 <div class="item-price">100 ₺</div>
                 <div class="controls">
                     <button class="btn-qty" onclick="updateQty('klasik_durum', 'Klasik Dürüm Menü', 100, -1)">-</button>
@@ -124,11 +129,12 @@
             </div>
         </div>
         <div class="menu-item">
-            <div class="item-details">
+            <div class="item-img-container"><img src="./assets/durum.png" alt="Dürüm"></div>
+            <div class="item-content">
                 <div class="item-name">Spicy Çiğköfte Dürüm + Ayran</div>
                 <div class="item-desc">Acı severlere özel ekstra baharatlı spesiyal</div>
             </div>
-            <div>
+            <div class="item-actions">
                 <div class="item-price">110 ₺</div>
                 <div class="controls">
                     <button class="btn-qty" onclick="updateQty('spicy_durum', 'Spicy Dürüm Menü', 110, -1)">-</button>
@@ -143,11 +149,12 @@
     <div class="category">
         <div class="category-title">🥪 GECE TOSTU (Ayran Hediyeli)</div>
         <div class="menu-item">
-            <div class="item-details">
+            <div class="item-img-container"><img src="./assets/tost.png" alt="Tost"></div>
+            <div class="item-content">
                 <div class="item-name">Bol Sucuk, Bol Kaşar + Ayran</div>
                 <div class="item-desc">Eriyen kaşar ve kaliteli sucukla imza tostumuz</div>
             </div>
-            <div>
+            <div class="item-actions">
                 <div class="item-price">150 ₺</div>
                 <div class="controls">
                     <button class="btn-qty" onclick="updateQty('tost_karisik', 'Karisik Tost Menü', 150, -1)">-</button>
@@ -157,11 +164,12 @@
             </div>
         </div>
         <div class="menu-item">
-            <div class="item-details">
+            <div class="item-img-container"><img src="./assets/tost.png" alt="Tost"></div>
+            <div class="item-content">
                 <div class="item-name">XXX-Bol Kaşarlı Tost + Ayran</div>
                 <div class="item-desc">Sadece kaşar isteyenlere, uzayıp giden şölen</div>
             </div>
-            <div>
+            <div class="item-actions">
                 <div class="item-price">150 ₺</div>
                 <div class="controls">
                     <button class="btn-qty" onclick="updateQty('tost_kasar', 'Bol Kasarli Tost Menü', 150, -1)">-</button>
@@ -171,11 +179,12 @@
             </div>
         </div>
         <div class="menu-item">
-            <div class="item-details">
+            <div class="item-img-container"><img src="./assets/tost.png" alt="Tost"></div>
+            <div class="item-content">
                 <div class="item-name">X-Bol Sucuk, X-Bol Kaşar + Ayran</div>
                 <div class="item-desc">Doymak bilmeyenlere iki kat malzeme şöleni!</div>
             </div>
-            <div>
+            <div class="item-actions">
                 <div class="item-price">175 ₺</div>
                 <div class="controls">
                     <button class="btn-qty" onclick="updateQty('tost_duble', 'Duble Tost Menü', 175, -1)">-</button>
@@ -190,11 +199,12 @@
     <div class="category">
         <div class="category-title">🐚 TAZE MİDYE DOLMA <span style="font-size: 0.8rem; color:#ff4500;">(Cuma-Pazar)</span></div>
         <div class="menu-item">
-            <div class="item-details">
+            <div class="item-img-container"><img src="./assets/midye.png" alt="Midye"></div>
+            <div class="item-content">
                 <div class="item-name">Yarım Kilo Midye Dolma</div>
                 <div class="item-desc">Günlük taze, bol baharatlı</div>
             </div>
-            <div>
+            <div class="item-actions">
                 <div class="item-price">250 ₺</div>
                 <div class="controls">
                     <button class="btn-qty" onclick="updateQty('midye_yarim', 'Yarim Kilo Midye', 250, -1)">-</button>
@@ -204,11 +214,12 @@
             </div>
         </div>
         <div class="menu-item">
-            <div class="item-details">
+            <div class="item-img-container"><img src="./assets/midye.png" alt="Midye"></div>
+            <div class="item-content">
                 <div class="item-name">1 Kilo Midye Dolma (Kova)</div>
                 <div class="item-desc">Arkadaş ortamlarının vazgeçilmezi</div>
             </div>
-            <div>
+            <div class="item-actions">
                 <div class="item-price">500 ₺</div>
                 <div class="controls">
                     <button class="btn-qty" onclick="updateQty('midye_kilo', '1 Kilo Midye', 500, -1)">-</button>
@@ -223,10 +234,11 @@
     <div class="category">
         <div class="category-title">🍮 MEŞHUR FIRIN SÜTLAÇ</div>
         <div class="menu-item">
-            <div class="item-details">
+            <div class="item-img-container"><img src="./assets/sutlac.png" alt="Sutlac"></div>
+            <div class="item-content">
                 <div class="item-name">Orijinal Fırın Sütlaç</div>
             </div>
-            <div>
+            <div class="item-actions">
                 <div class="item-price">120 ₺</div>
                 <div class="controls">
                     <button class="btn-qty" onclick="updateQty('sutlac_orj', 'Orjinal Sutlac', 120, -1)">-</button>
@@ -236,10 +248,11 @@
             </div>
         </div>
         <div class="menu-item">
-            <div class="item-details">
+            <div class="item-img-container"><img src="./assets/sutlac.png" alt="Sutlac"></div>
+            <div class="item-content">
                 <div class="item-name">Karamelize Kapak Sütlaç</div>
             </div>
-            <div>
+            <div class="item-actions">
                 <div class="item-price">150 ₺</div>
                 <div class="controls">
                     <button class="btn-qty" onclick="updateQty('sutlac_karamel', 'Karamelize Sutlac', 150, -1)">-</button>
@@ -285,10 +298,8 @@
 
     function checkOpenStatus() {
         const now = new Date();
-        // Istanbul timezone offset handle (basit mantikla yerel saat)
         const hour = now.getHours();
         
-        // Acilis 11:00, Kapanis 01:00 (Yani saat 11,12..23 veya 0 ise aciktir)
         isShopOpen = (hour >= 11 || hour === 0);
         
         const statusEl = document.getElementById('shopStatus');
@@ -312,9 +323,7 @@
         }
     }
     
-    // Sayfa acildiginda durumu kontrol et
     checkOpenStatus();
-    // Her 1 dakikada bir kontrolu tekrarla
     setInterval(checkOpenStatus, 60000);
 
     function updateQty(id, name, price, change) {
@@ -385,7 +394,6 @@
         orderText += `\n💰 *TOPLAM TUTAR: ${totalPrice} TL*\n\n`;
         orderText += `_Dijital Menü Üzerinden Gönderildi 🚀_`;
 
-        // ntfy.sh üzerinden dükkandaki bilgisayara anlık (canlı) sinyal gönderimi
         fetch('https://ntfy.sh/ikram_cigkofte_simav_pos_998877', {
             method: 'POST',
             body: orderText,

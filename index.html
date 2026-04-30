@@ -102,13 +102,22 @@
     <div class="header">
         <div class="title">İKRAM ÇİĞKÖFTE</div>
         <div class="subtitle">SİMAV'IN EFSANE LEZZETLERİ</div>
-        <a href="https://www.instagram.com/bakierdimensimav" target="_blank" class="instagram" style="text-decoration: none; color: #fff;">@bakierdimensimav</a>
+        <a href="javascript:void(0)" onclick="openInstagram()" class="instagram" style="text-decoration: none; color: #fff;">@bakierdimensimav</a>
         <br>
         <div class="status-badge" id="shopStatus">
             <div class="pulse-dot"></div>
             <span id="shopStatusText">Durum Kontrol Ediliyor...</span>
         </div>
     </div>
+    
+    <script>
+    function openInstagram() {
+        // Mobilde direkt Instagram uygulamasını açmaya zorla
+        setTimeout(function () { window.location = "https://www.instagram.com/bakierdimensimav"; }, 250);
+        window.location = "instagram://user?username=bakierdimensimav";
+    }
+    </script>
+
 
     <!-- Category 1 -->
     <div class="category">

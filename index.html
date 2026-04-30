@@ -83,6 +83,13 @@
         .btn-location { background: #333; color: #fff; border: 1px solid #555; padding: 8px 15px; border-radius: 8px; margin-top: 5px; cursor: pointer; font-size: 0.8rem; display: flex; align-items: center; gap: 5px; }
         .btn-send { width: 100%; background: #25D366; color: #fff; border: none; padding: 15px; border-radius: 12px; font-size: 1.2rem; font-weight: 900; cursor: pointer; margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 10px; }
         .btn-close { background: transparent; border: none; color: #888; margin-top: 15px; width: 100%; cursor: pointer; }
+        
+        /* Status Badge */
+        .status-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(37, 211, 102, 0.1); border: 1px solid #25D366; padding: 6px 16px; border-radius: 20px; color: #25D366; font-weight: bold; font-size: 0.95rem; margin-top: 15px; }
+        .status-badge.closed { background: rgba(255, 69, 0, 0.1); border-color: #ff4500; color: #ff4500; }
+        .pulse-dot { width: 10px; height: 10px; background: #25D366; border-radius: 50%; box-shadow: 0 0 10px #25D366; animation: pulse 1.5s infinite; }
+        .status-badge.closed .pulse-dot { background: #ff4500; box-shadow: 0 0 10px #ff4500; animation: none; }
+        @keyframes pulse { 0% { transform: scale(0.95); opacity: 0.8; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.8; } }
     </style>
 </head>
 <body>
@@ -92,6 +99,11 @@
         <div class="title">İKRAM ÇİĞKÖFTE</div>
         <div class="subtitle">SİMAV'IN EFSANE LEZZETLERİ</div>
         <div class="instagram">@bakierdimensimav</div>
+        <br>
+        <div class="status-badge" id="shopStatus">
+            <div class="pulse-dot"></div>
+            <span id="shopStatusText">Durum Kontrol Ediliyor...</span>
+        </div>
     </div>
 
     <!-- Category 1 -->
@@ -269,8 +281,47 @@
     let cart = {};
     let totalPrice = 0;
     let totalItems = 0;
+    let isShopOpen = true;
+
+    function checkOpenStatus() {
+        const now = new Date();
+        // Istanbul timezone offset handle (basit mantikla yerel saat)
+        const hour = now.getHours();
+        
+        // Acilis 11:00, Kapanis 01:00 (Yani saat 11,12..23 veya 0 ise aciktir)
+        isShopOpen = (hour >= 11 || hour === 0);
+        
+        const statusEl = document.getElementById('shopStatus');
+        const textEl = document.getElementById('shopStatusText');
+        const checkoutBtn = document.querySelector('.btn-checkout');
+        
+        if (isShopOpen) {
+            statusEl.classList.remove('closed');
+            textEl.innerText = "🟢 ŞU AN AÇIK (Siparişe Hazır)";
+            checkoutBtn.disabled = false;
+            checkoutBtn.style.background = "#fff";
+            checkoutBtn.style.color = "#ff4500";
+            checkoutBtn.innerHTML = "Siparişi Tamamla 🚀";
+        } else {
+            statusEl.classList.add('closed');
+            textEl.innerText = "🔴 ŞU AN KAPALI (11:00'da Açılır)";
+            checkoutBtn.disabled = true;
+            checkoutBtn.style.background = "#555";
+            checkoutBtn.style.color = "#ccc";
+            checkoutBtn.innerHTML = "Şu An Kapalı 🚫";
+        }
+    }
+    
+    // Sayfa acildiginda durumu kontrol et
+    checkOpenStatus();
+    // Her 1 dakikada bir kontrolu tekrarla
+    setInterval(checkOpenStatus, 60000);
 
     function updateQty(id, name, price, change) {
+        if (!isShopOpen) {
+            alert("Dükkanımız şu an kapalıdır. Sipariş alamıyoruz.");
+            return;
+        }
         if (!cart[id]) cart[id] = { name, price, qty: 0 };
         
         cart[id].qty += change;

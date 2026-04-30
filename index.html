@@ -3,266 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İkram Çiğköfte - Premium Menü</title>
+    <title>İkram Çiğköfte - Akıllı Sipariş</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background-color: #0d0d0d;
-            background-image: radial-gradient(circle at 50% 0%, #2a0808 0%, #0d0d0d 60%);
-            color: #ffffff;
-            font-family: 'Outfit', sans-serif;
-            display: flex;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-        .menu-container {
-            width: 100%;
-            max-width: 800px;
-            background: rgba(20, 20, 20, 0.8);
-            border: 1px solid #333;
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(255, 60, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        .menu-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent 0%, transparent 40%, rgba(255, 60, 0, 0.1) 50%, transparent 60%, transparent 100%);
-            animation: rotate 20s linear infinite;
-            z-index: 0;
-            pointer-events: none;
-        }
-        @keyframes rotate {
-            100% { transform: rotate(360deg); }
-        }
-        .content-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 30px;
-        }
-        .title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: #ff4500;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(255, 69, 0, 0.4);
-        }
-        .subtitle {
-            font-size: 1.2rem;
-            color: #ff9d00;
-            font-weight: 500;
-            letter-spacing: 2px;
-        }
-        .instagram {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 20px;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(220, 39, 67, 0.3);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #0d0d0d; background-image: radial-gradient(circle at 50% 0%, #2a0808 0%, #0d0d0d 60%); color: #ffffff; font-family: 'Outfit', sans-serif; display: flex; justify-content: center; padding: 20px 10px 100px 10px; min-height: 100vh; }
+        .menu-container { width: 100%; max-width: 800px; background: rgba(20, 20, 20, 0.8); border: 1px solid #333; border-radius: 20px; padding: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); position: relative; overflow: hidden; }
+        .header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid rgba(255, 255, 255, 0.1); padding-bottom: 20px; }
+        .title { font-size: 2.5rem; font-weight: 900; color: #ff4500; letter-spacing: 2px; text-shadow: 0 0 10px rgba(255, 69, 0, 0.4); }
+        .subtitle { font-size: 1rem; color: #ff9d00; font-weight: 500; }
+        .instagram { display: inline-block; margin-top: 10px; padding: 5px 15px; background: linear-gradient(45deg, #f09433, #dc2743); border-radius: 20px; font-weight: 700; font-size: 0.9rem; }
         
-        .category {
-            margin-bottom: 40px;
-        }
-        .category-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        .category-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, #ff4500, transparent);
-            margin-left: 15px;
-        }
+        .category { margin-bottom: 30px; }
+        .category-title { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 15px; border-bottom: 1px solid #ff4500; display: inline-block; padding-bottom: 5px; }
         
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 15px;
-            padding: 10px 0;
-            border-bottom: 1px dashed rgba(255,255,255,0.1);
-            transition: transform 0.2s;
-        }
-        .menu-item:hover {
-            transform: translateX(10px);
-            border-bottom-color: #ff4500;
-        }
-        .item-details {
-            flex: 1;
-            padding-right: 20px;
-        }
-        .item-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #f8f8f8;
-            margin-bottom: 5px;
-        }
-        .item-desc {
-            font-size: 0.9rem;
-            color: #aaa;
-            font-weight: 300;
-        }
-        .item-price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #ff9d00;
-            white-space: nowrap;
-        }
+        .menu-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid transparent; transition: 0.2s; }
+        .menu-item:hover { border-color: #ff4500; background: rgba(255,255,255,0.05); }
+        .item-details { flex: 1; padding-right: 15px; }
+        .item-name { font-size: 1.1rem; font-weight: 700; color: #f8f8f8; }
+        .item-desc { font-size: 0.85rem; color: #aaa; margin-top: 4px; }
+        .item-price { font-size: 1.2rem; font-weight: 900; color: #ff9d00; margin-bottom: 5px; }
         
-        .footer {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px solid rgba(255, 255, 255, 0.1);
-        }
-        .footer-text {
-            font-size: 1.2rem;
-            color: #ddd;
-            margin-bottom: 10px;
-        }
-        .phone {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #ff4500;
-            letter-spacing: 2px;
-        }
+        .controls { display: flex; align-items: center; background: #222; border-radius: 30px; padding: 5px; }
+        .btn-qty { background: #333; color: #fff; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-qty:hover { background: #ff4500; }
+        .qty { width: 30px; text-align: center; font-weight: bold; font-size: 1.1rem; }
+        
+        /* Floating Cart */
+        .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #ff4500; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 100; box-shadow: 0 -10px 30px rgba(255, 69, 0, 0.3); }
+        .cart-bar.active { transform: translateY(0); }
+        .cart-info { font-size: 1.2rem; font-weight: 700; }
+        .btn-checkout { background: #fff; color: #ff4500; border: none; padding: 10px 25px; border-radius: 30px; font-weight: 900; font-size: 1.1rem; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        
+        /* Modal */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 200; }
+        .modal { background: #1a1a1a; padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; border: 1px solid #333; }
+        .modal h2 { margin-bottom: 20px; color: #ff4500; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: #aaa; }
+        .input-group input, .input-group textarea { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 10px; font-family: 'Outfit'; }
+        .btn-location { background: #333; color: #fff; border: 1px solid #555; padding: 8px 15px; border-radius: 8px; margin-top: 5px; cursor: pointer; font-size: 0.8rem; display: flex; align-items: center; gap: 5px; }
+        .btn-send { width: 100%; background: #25D366; color: #fff; border: none; padding: 15px; border-radius: 12px; font-size: 1.2rem; font-weight: 900; cursor: pointer; margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .btn-close { background: transparent; border: none; color: #888; margin-top: 15px; width: 100%; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <div class="menu-container">
-    <div class="content-wrapper">
-        <div class="header">
-            <div class="title">İKRAM ÇİĞKÖFTE</div>
-            <div class="subtitle">SİMAV'IN EFSANE LEZZETLERİ</div>
-            <div class="instagram">@bakierdimensimav</div>
-        </div>
+    <div class="header">
+        <div class="title">İKRAM ÇİĞKÖFTE</div>
+        <div class="subtitle">SİMAV'IN EFSANE LEZZETLERİ</div>
+        <div class="instagram">@bakierdimensimav</div>
+    </div>
 
-        <div class="category">
-            <div class="category-title">🌯 DÜRÜM MENÜ (Ayran Hediyeli)</div>
-            
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">Klasik Çiğköfte Dürüm + Ayran</div>
-                    <div class="item-desc">Bol yeşillik, taze nane ve nar ekşisi şöleni</div>
-                </div>
+    <!-- Category 1 -->
+    <div class="category">
+        <div class="category-title">🌯 DÜRÜM MENÜ (Ayran Hediyeli)</div>
+        <div class="menu-item">
+            <div class="item-details">
+                <div class="item-name">Klasik Çiğköfte Dürüm + Ayran</div>
+                <div class="item-desc">Bol yeşillik, taze nane ve nar ekşisi şöleni</div>
+            </div>
+            <div>
                 <div class="item-price">100 ₺</div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">Spicy Çiğköfte Dürüm + Ayran</div>
-                    <div class="item-desc">Acı severlere özel ekstra baharatlı spesiyal</div>
+                <div class="controls">
+                    <button class="btn-qty" onclick="updateQty('klasik_durum', 'Klasik Dürüm Menü', 100, -1)">-</button>
+                    <div class="qty" id="qty_klasik_durum">0</div>
+                    <button class="btn-qty" onclick="updateQty('klasik_durum', 'Klasik Dürüm Menü', 100, 1)">+</button>
                 </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <div class="item-name">Spicy Çiğköfte Dürüm + Ayran</div>
+                <div class="item-desc">Acı severlere özel ekstra baharatlı spesiyal</div>
+            </div>
+            <div>
                 <div class="item-price">110 ₺</div>
+                <div class="controls">
+                    <button class="btn-qty" onclick="updateQty('spicy_durum', 'Spicy Dürüm Menü', 110, -1)">-</button>
+                    <div class="qty" id="qty_spicy_durum">0</div>
+                    <button class="btn-qty" onclick="updateQty('spicy_durum', 'Spicy Dürüm Menü', 110, 1)">+</button>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="category">
-            <div class="category-title">🥪 GECE TOSTU (Ayran Hediyeli)</div>
-            
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">Bol Sucuk, Bol Kaşar + Ayran</div>
-                    <div class="item-desc">Eriyen kaşar ve kaliteli sucukla imza tostumuz</div>
-                </div>
-                <div class="item-price">150 ₺</div>
+    <!-- Category 2 -->
+    <div class="category">
+        <div class="category-title">🥪 GECE TOSTU (Ayran Hediyeli)</div>
+        <div class="menu-item">
+            <div class="item-details">
+                <div class="item-name">Bol Sucuk, Bol Kaşar + Ayran</div>
+                <div class="item-desc">Eriyen kaşar ve kaliteli sucukla imza tostumuz</div>
             </div>
-
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">XXX-Bol Kaşarlı Tost + Ayran</div>
-                    <div class="item-desc">Sadece kaşar isteyenlere, uzayıp giden şölen</div>
-                </div>
+            <div>
                 <div class="item-price">150 ₺</div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">X-Bol Sucuk, X-Bol Kaşar + Ayran</div>
-                    <div class="item-desc">Doymak bilmeyenlere iki kat malzeme şöleni!</div>
+                <div class="controls">
+                    <button class="btn-qty" onclick="updateQty('tost_karisik', 'Karisik Tost Menü', 150, -1)">-</button>
+                    <div class="qty" id="qty_tost_karisik">0</div>
+                    <button class="btn-qty" onclick="updateQty('tost_karisik', 'Karisik Tost Menü', 150, 1)">+</button>
                 </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <div class="item-name">XXX-Bol Kaşarlı Tost + Ayran</div>
+                <div class="item-desc">Sadece kaşar isteyenlere, uzayıp giden şölen</div>
+            </div>
+            <div>
+                <div class="item-price">150 ₺</div>
+                <div class="controls">
+                    <button class="btn-qty" onclick="updateQty('tost_kasar', 'Bol Kasarli Tost Menü', 150, -1)">-</button>
+                    <div class="qty" id="qty_tost_kasar">0</div>
+                    <button class="btn-qty" onclick="updateQty('tost_kasar', 'Bol Kasarli Tost Menü', 150, 1)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <div class="item-name">X-Bol Sucuk, X-Bol Kaşar + Ayran</div>
+                <div class="item-desc">Doymak bilmeyenlere iki kat malzeme şöleni!</div>
+            </div>
+            <div>
                 <div class="item-price">175 ₺</div>
+                <div class="controls">
+                    <button class="btn-qty" onclick="updateQty('tost_duble', 'Duble Tost Menü', 175, -1)">-</button>
+                    <div class="qty" id="qty_tost_duble">0</div>
+                    <button class="btn-qty" onclick="updateQty('tost_duble', 'Duble Tost Menü', 175, 1)">+</button>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="category">
-            <div class="category-title">🐚 TAZE MİDYE DOLMA <span style="font-size: 1rem; color: #ff4500; font-weight: 500; margin-left: 15px; padding: 3px 10px; background: rgba(255, 69, 0, 0.1); border-radius: 20px;">(Cuma'dan Pazar'a)</span></div>
-            
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">Yarım Kilo Midye Dolma</div>
-                    <div class="item-desc">Günlük taze, bol baharatlı</div>
-                </div>
+    <!-- Category 3 -->
+    <div class="category">
+        <div class="category-title">🐚 TAZE MİDYE DOLMA <span style="font-size: 0.8rem; color:#ff4500;">(Cuma-Pazar)</span></div>
+        <div class="menu-item">
+            <div class="item-details">
+                <div class="item-name">Yarım Kilo Midye Dolma</div>
+                <div class="item-desc">Günlük taze, bol baharatlı</div>
+            </div>
+            <div>
                 <div class="item-price">250 ₺</div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">1 Kilo Midye Dolma (Kova)</div>
-                    <div class="item-desc">Arkadaş ortamlarının vazgeçilmezi</div>
+                <div class="controls">
+                    <button class="btn-qty" onclick="updateQty('midye_yarim', 'Yarim Kilo Midye', 250, -1)">-</button>
+                    <div class="qty" id="qty_midye_yarim">0</div>
+                    <button class="btn-qty" onclick="updateQty('midye_yarim', 'Yarim Kilo Midye', 250, 1)">+</button>
                 </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <div class="item-name">1 Kilo Midye Dolma (Kova)</div>
+                <div class="item-desc">Arkadaş ortamlarının vazgeçilmezi</div>
+            </div>
+            <div>
                 <div class="item-price">500 ₺</div>
+                <div class="controls">
+                    <button class="btn-qty" onclick="updateQty('midye_kilo', '1 Kilo Midye', 500, -1)">-</button>
+                    <div class="qty" id="qty_midye_kilo">0</div>
+                    <button class="btn-qty" onclick="updateQty('midye_kilo', '1 Kilo Midye', 500, 1)">+</button>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="category">
-            <div class="category-title">🍮 MEŞHUR FIRIN SÜTLAÇ</div>
-            
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">Orijinal Fırın Sütlaç</div>
-                    <div class="item-desc">Tam kıvamında klasik lezzet</div>
-                </div>
+    <!-- Category 4 -->
+    <div class="category">
+        <div class="category-title">🍮 MEŞHUR FIRIN SÜTLAÇ</div>
+        <div class="menu-item">
+            <div class="item-details">
+                <div class="item-name">Orijinal Fırın Sütlaç</div>
+            </div>
+            <div>
                 <div class="item-price">120 ₺</div>
-            </div>
-            
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">Karamelize Kapak Sütlaç</div>
-                    <div class="item-desc">Özel karamelize üst katmanıyla premium</div>
+                <div class="controls">
+                    <button class="btn-qty" onclick="updateQty('sutlac_orj', 'Orjinal Sutlac', 120, -1)">-</button>
+                    <div class="qty" id="qty_sutlac_orj">0</div>
+                    <button class="btn-qty" onclick="updateQty('sutlac_orj', 'Orjinal Sutlac', 120, 1)">+</button>
                 </div>
-                <div class="item-price">150 ₺</div>
             </div>
         </div>
-
-        <div class="footer" style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid rgba(255, 255, 255, 0.1);">
-            <div class="footer-text" style="margin-bottom: 20px;">Gece 01:00'e Kadar Açığız</div>
-            <a href="https://api.whatsapp.com/send/?phone=905454422626&text=Merhaba%2C%20masadan%20sipari%C5%9F%20vermek%20istiyorum." 
-               style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: #fff; text-decoration: none; padding: 15px 40px; font-size: 1.5rem; font-weight: 800; border-radius: 50px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); transition: transform 0.2s;">
-                💬 SİPARİŞİ WHATSAPP'A YAZ
-            </a>
-            <div style="font-size: 0.9rem; color: #888; margin-top: 15px;">Tıklayın ve sohbetten siparişinizi iletin.</div>
+        <div class="menu-item">
+            <div class="item-details">
+                <div class="item-name">Karamelize Kapak Sütlaç</div>
+            </div>
+            <div>
+                <div class="item-price">150 ₺</div>
+                <div class="controls">
+                    <button class="btn-qty" onclick="updateQty('sutlac_karamel', 'Karamelize Sutlac', 150, -1)">-</button>
+                    <div class="qty" id="qty_sutlac_karamel">0</div>
+                    <button class="btn-qty" onclick="updateQty('sutlac_karamel', 'Karamelize Sutlac', 150, 1)">+</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<!-- Floating Cart -->
+<div class="cart-bar" id="cartBar">
+    <div class="cart-info">
+        <span id="cartTotalItems">0</span> Ürün | <span id="cartTotalPrice">0</span> ₺
+    </div>
+    <button class="btn-checkout" onclick="openModal()">Siparişi Tamamla 🚀</button>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal-overlay" id="checkoutModal">
+    <div class="modal">
+        <h2>📍 Adres & Onay</h2>
+        <div class="input-group">
+            <label>Ad Soyad</label>
+            <input type="text" id="customerName" placeholder="Örn: Ahmet Yılmaz">
+        </div>
+        <div class="input-group">
+            <label>Adres veya Masa No</label>
+            <textarea id="customerAddress" rows="2" placeholder="Örn: Masa 4 veya Cumhuriyet Mah. Gül Sokak..."></textarea>
+            <button class="btn-location" onclick="getLocation()">📍 Konumumu Bul (GPS ile Ekle)</button>
+        </div>
+        <button class="btn-send" onclick="sendOrder()">Siparişi İlet (WhatsApp)</button>
+        <button class="btn-close" onclick="closeModal()">Geri Dön</button>
+    </div>
+</div>
+
+<script>
+    let cart = {};
+    let totalPrice = 0;
+    let totalItems = 0;
+
+    function updateQty(id, name, price, change) {
+        if (!cart[id]) cart[id] = { name, price, qty: 0 };
+        
+        cart[id].qty += change;
+        if (cart[id].qty < 0) cart[id].qty = 0;
+        
+        document.getElementById('qty_' + id).innerText = cart[id].qty;
+        calculateTotal();
+    }
+
+    function calculateTotal() {
+        totalPrice = 0;
+        totalItems = 0;
+        for (let key in cart) {
+            totalPrice += cart[key].price * cart[key].qty;
+            totalItems += cart[key].qty;
+        }
+        
+        document.getElementById('cartTotalItems').innerText = totalItems;
+        document.getElementById('cartTotalPrice').innerText = totalPrice;
+        
+        const cartBar = document.getElementById('cartBar');
+        if (totalItems > 0) {
+            cartBar.classList.add('active');
+        } else {
+            cartBar.classList.remove('active');
+        }
+    }
+
+    function openModal() { document.getElementById('checkoutModal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('checkoutModal').style.display = 'none'; }
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            document.getElementById('customerAddress').value = "Konum bulunuyor...";
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                document.getElementById('customerAddress').value = "GPS Konumum: https://maps.google.com/?q=" + lat + "," + lon;
+            }, function() {
+                document.getElementById('customerAddress').value = "Konum alınamadı, lütfen manuel yazınız.";
+            });
+        } else {
+            alert("Tarayıcınız konum özelliğini desteklemiyor.");
+        }
+    }
+
+    function sendOrder() {
+        const name = document.getElementById('customerName').value || 'Belirtilmedi';
+        const address = document.getElementById('customerAddress').value || 'Belirtilmedi';
+        
+        let orderText = `👋 *Merhaba, İkram Çiğköfte'den siparişim var!*\n\n`;
+        orderText += `👤 *İsim:* ${name}\n`;
+        orderText += `📍 *Adres/Masa:* ${address}\n\n`;
+        orderText += `🛒 *SİPARİŞ DETAYI:*\n`;
+        
+        for (let key in cart) {
+            if (cart[key].qty > 0) {
+                orderText += `▪️ ${cart[key].qty}x ${cart[key].name} (${cart[key].price * cart[key].qty} TL)\n`;
+            }
+        }
+        orderText += `\n💰 *TOPLAM TUTAR: ${totalPrice} TL*\n\n`;
+        orderText += `_Dijital Menü Üzerinden Gönderildi 🚀_`;
+
+        // Lokal bota ping atmak icin ileride fetch API eklenecek
+        // fetch('http://localhost:5000/api/order', { method: 'POST', ... })
+
+        const encodedText = encodeURIComponent(orderText);
+        const whatsappUrl = `https://api.whatsapp.com/send/?phone=905454422626&text=${encodedText}`;
+        window.open(whatsappUrl, '_blank');
+        closeModal();
+    }
+</script>
 </body>
 </html>

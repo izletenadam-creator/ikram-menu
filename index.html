@@ -369,12 +369,32 @@
 </div>
 
 <script>
+    const CAMPAIGNS = [
+        // --- HAFTALIK ÖĞRENCİ GÜNLERİ ---
+        { id: "haftasonu", type: "weekly", days: [5, 6], startHour: 18, endHour: 1, discountRate: 0.20, message: "🎉 ÖĞRENCİ GÜNLERİ AKTİF! Sepette %20 İndirim!" },
+        
+        // --- 2026 ÖZEL GÜNLER ---
+        { id: "19mayis26", type: "date", date: "2026-05-19", discountRate: 0.19, message: "🇹🇷 19 Mayıs Gençlik Bayramına Özel %19 İndirim!" },
+        { id: "zafer26", type: "date", date: "2026-08-30", discountRate: 0.30, message: "🇹🇷 30 Ağustos Zafer Bayramına Özel %30 İndirim!" },
+        { id: "cumhuriyet26", type: "date", date: "2026-10-29", discountRate: 0.29, message: "🇹🇷 29 Ekim Cumhuriyet Bayramına Özel %29 İndirim!" },
+        { id: "yilbasi26", type: "date", date: "2026-12-31", discountRate: 0.20, message: "🎄 Mutlu Yıllar! Yılbaşına Özel %20 İndirim!" },
+        
+        // --- 2027 ÖZEL GÜNLER ---
+        { id: "sevgililer27", type: "date", date: "2027-02-14", discountRate: 0.14, message: "❤️ 14 Şubat Sevgililer Gününe Özel %14 İndirim!" },
+        { id: "23nisan27", type: "date", date: "2027-04-23", discountRate: 0.23, message: "🇹🇷 23 Nisan Ulusal Egemenlik Bayramı %23 İndirim!" },
+        { id: "19mayis27", type: "date", date: "2027-05-19", discountRate: 0.19, message: "🇹🇷 19 Mayıs Gençlik Bayramına Özel %19 İndirim!" },
+        { id: "zafer27", type: "date", date: "2027-08-30", discountRate: 0.30, message: "🇹🇷 30 Ağustos Zafer Bayramına Özel %30 İndirim!" },
+        { id: "cumhuriyet27", type: "date", date: "2027-10-29", discountRate: 0.29, message: "🇹🇷 29 Ekim Cumhuriyet Bayramına Özel %29 İndirim!" },
+        { id: "yilbasi27", type: "date", date: "2027-12-31", discountRate: 0.20, message: "🎄 Mutlu Yıllar! Yılbaşına Özel %20 İndirim!" }
+    ];
+
     let cart = {};
     let totalPrice = 0;
     let totalItems = 0;
     let isShopOpen = true;
     let isDiscountActive = false;
-    let discountRate = 0.20;
+    let discountRate = 0;
+    let activeCampaignMsg = "";
 
     function checkOpenStatus() {
         const now = new Date();
@@ -383,17 +403,46 @@
         
         isShopOpen = (hour >= 11 || hour === 0);
         
-        // Ogrenci İndirimi Kontrolü (Perşembe, Cuma ve Cumartesi 18:00 - 01:00 arası)
-        const isThursdayNight = (day === 4 && hour >= 18) || (day === 5 && hour === 0);
-        const isFridayNight = (day === 5 && hour >= 18) || (day === 6 && hour === 0);
-        const isSaturdayNight = (day === 6 && hour >= 18) || (day === 0 && hour === 0);
+        const dateStr = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, '0') + "-" + String(now.getDate()).padStart(2, '0');
+        let activeCampaign = null;
         
-        isDiscountActive = isThursdayNight || isFridayNight || isSaturdayNight;
+        // 1. Önce özel tarihlere bak (Öncelikli)
+        for (let camp of CAMPAIGNS) {
+            if (camp.type === "date" && camp.date === dateStr) {
+                activeCampaign = camp;
+                break;
+            }
+        }
+        
+        // 2. Özel tarih yoksa haftalık rutine bak
+        if (!activeCampaign) {
+            for (let camp of CAMPAIGNS) {
+                if (camp.type === "weekly") {
+                    let isActive = false;
+                    for (let d of camp.days) {
+                        if (day === d && hour >= camp.startHour) isActive = true;
+                        let nextDay = (d + 1) % 7;
+                        if (day === nextDay && hour < camp.endHour) isActive = true;
+                    }
+                    if (isActive) {
+                        activeCampaign = camp;
+                        break;
+                    }
+                }
+            }
+        }
         
         const banner = document.getElementById('campaignBanner');
-        if (isDiscountActive && isShopOpen) {
+        if (activeCampaign && isShopOpen) {
+            isDiscountActive = true;
+            discountRate = activeCampaign.discountRate;
+            activeCampaignMsg = activeCampaign.message;
+            banner.innerHTML = activeCampaign.message;
             banner.style.display = 'block';
         } else {
+            isDiscountActive = false;
+            discountRate = 0;
+            activeCampaignMsg = "";
             banner.style.display = 'none';
         }
         
@@ -496,7 +545,7 @@
             }
         }
         if (isDiscountActive) {
-            orderText += `\n🎉 *%20 ÖĞRENCİ İNDİRİMİ UYGULANDI!*\n`;
+            orderText += `\n${activeCampaignMsg.toUpperCase()}\n`;
             orderText += `💰 *İNDİRİMLİ TUTAR: ${totalPrice} TL*\n\n`;
         } else {
             orderText += `\n💰 *TOPLAM TUTAR: ${totalPrice} TL*\n\n`;

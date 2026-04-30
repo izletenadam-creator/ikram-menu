@@ -125,9 +125,10 @@
 
     <!-- Category 1 -->
     <div class="category">
-        <div class="category-title">🌯 DÜRÜM MENÜ (Ayran Hediyeli)</div>
+        <div class="category-title">🌯 ÇİĞKÖFTE & DÜRÜM</div>
+        
         <div class="menu-item">
-            <div class="item-img-container"><img src="./assets/durum.png" alt="Dürüm"></div>
+            <div class="item-img-container"><img src="./assets/durum.png" alt="Klasik Dürüm"></div>
             <div class="item-content">
                 <div class="item-name">Klasik Çiğköfte Dürüm + Ayran</div>
                 <div class="item-desc">Bol yeşillik, taze nane ve nar ekşisi şöleni</div>
@@ -153,6 +154,38 @@
                     <button class="btn-qty" onclick="updateQty('spicy_durum', 'Spicy Dürüm Menü', 110, -1)">-</button>
                     <div class="qty" id="qty_spicy_durum">0</div>
                     <button class="btn-qty" onclick="updateQty('spicy_durum', 'Spicy Dürüm Menü', 110, 1)">+</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- YENI EKLENEN KILOLUK CIGKOFTELER -->
+        <div class="menu-item">
+            <div class="item-img-container"><img src="./assets/durum.png" alt="Yarım Kilo Çiğköfte"></div>
+            <div class="item-content">
+                <div class="item-name">Yarım Kilo Çiğköfte (Porsiyon)</div>
+                <div class="item-desc">Bol yeşillik, limon, lavaş ve nar ekşisi ile</div>
+            </div>
+            <div class="item-actions">
+                <div class="item-price">250 ₺</div>
+                <div class="controls">
+                    <button class="btn-qty" onclick="updateQty('cigkofte_yarim', 'Yarım Kilo Çiğköfte', 250, -1)">-</button>
+                    <div class="qty" id="qty_cigkofte_yarim">0</div>
+                    <button class="btn-qty" onclick="updateQty('cigkofte_yarim', 'Yarım Kilo Çiğköfte', 250, 1)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img-container"><img src="./assets/spicy_durum.png" alt="1 Kilo Çiğköfte"></div>
+            <div class="item-content">
+                <div class="item-name">1 Kilo Çiğköfte (Aile Boyu)</div>
+                <div class="item-desc">Ekstra yeşillik, bol lavaş, acı sos ve nar ekşisi ile</div>
+            </div>
+            <div class="item-actions">
+                <div class="item-price">500 ₺</div>
+                <div class="controls">
+                    <button class="btn-qty" onclick="updateQty('cigkofte_kilo', '1 Kilo Çiğköfte', 500, -1)">-</button>
+                    <div class="qty" id="qty_cigkofte_kilo">0</div>
+                    <button class="btn-qty" onclick="updateQty('cigkofte_kilo', '1 Kilo Çiğköfte', 500, 1)">+</button>
                 </div>
             </div>
         </div>

@@ -383,10 +383,12 @@
         
         isShopOpen = (hour >= 11 || hour === 0);
         
-        // Ogrenci İndirimi Kontrolü (Cuma ve Cumartesi 18:00 - 01:00 arası)
+        // Ogrenci İndirimi Kontrolü (Perşembe, Cuma ve Cumartesi 18:00 - 01:00 arası)
+        const isThursdayNight = (day === 4 && hour >= 18) || (day === 5 && hour === 0);
         const isFridayNight = (day === 5 && hour >= 18) || (day === 6 && hour === 0);
         const isSaturdayNight = (day === 6 && hour >= 18) || (day === 0 && hour === 0);
-        isDiscountActive = isFridayNight || isSaturdayNight;
+        
+        isDiscountActive = isThursdayNight || isFridayNight || isSaturdayNight;
         
         const banner = document.getElementById('campaignBanner');
         if (isDiscountActive && isShopOpen) {

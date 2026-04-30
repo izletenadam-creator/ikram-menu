@@ -334,8 +334,12 @@
         orderText += `\n💰 *TOPLAM TUTAR: ${totalPrice} TL*\n\n`;
         orderText += `_Dijital Menü Üzerinden Gönderildi 🚀_`;
 
-        // Lokal bota ping atmak icin ileride fetch API eklenecek
-        // fetch('http://localhost:5000/api/order', { method: 'POST', ... })
+        // ntfy.sh üzerinden dükkandaki bilgisayara anlık (canlı) sinyal gönderimi
+        fetch('https://ntfy.sh/ikram_cigkofte_simav_pos_998877', {
+            method: 'POST',
+            body: orderText,
+            headers: { 'Title': 'YENI SIPARIS!', 'Priority': 'urgent', 'Tags': 'rotating_light,bell' }
+        }).catch(err => console.log('Ping hatasi:', err));
 
         const encodedText = encodeURIComponent(orderText);
         const whatsappUrl = `https://api.whatsapp.com/send/?phone=905454422626&text=${encodedText}`;

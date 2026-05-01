@@ -257,8 +257,8 @@
         </div>
     </div>
 
-    <!-- Category 3 -->
-    <div class="category">
+    <!-- Category 3 (Midye) -->
+    <div class="category" id="categoryMidye">
         <div class="category-title">🐚 TAZE MİDYE DOLMA <span style="font-size: 0.8rem; color:#ff4500;">(Cuma-Pazar)</span></div>
         <div class="menu-item">
             <div class="item-img-container"><img src="./assets/midye.png" alt="Midye"></div>
@@ -514,6 +514,23 @@
     
     checkOpenStatus();
     setInterval(checkOpenStatus, 60000);
+
+    function checkMidyeDay() {
+        const day = new Date().getDay(); // 5: Cuma, 6: Cumartesi, 0: Pazar
+        const midyeDays = [5, 6, 0];
+        if (midyeDays.includes(day)) {
+            const midyeCat = document.getElementById('categoryMidye');
+            const menuContainer = document.querySelector('.menu-container');
+            const firstCat = document.querySelector('.category');
+            if (midyeCat && firstCat && midyeCat !== firstCat) {
+                menuContainer.insertBefore(midyeCat, firstCat);
+            }
+            document.querySelector('.subtitle').innerHTML = "🔥 TAZE MİDYE GELDİ! 🐚 (CUMA-PAZAR)";
+            document.querySelector('.subtitle').style.color = "#25D366";
+            document.querySelector('.subtitle').style.fontWeight = "900";
+        }
+    }
+    checkMidyeDay();
 
     function updateQty(id, name, price, change) {
         if (!isShopOpen) {

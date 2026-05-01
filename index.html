@@ -436,8 +436,41 @@
                 ]);
             if (error) throw error;
             console.log("Sipariş DB'ye kaydedildi.");
+            
+            // Stok Düşümü
+            decrementStock(items);
         } catch (err) {
             console.error("DB Kayıt Hatası:", err);
+        }
+    }
+
+    async function decrementStock(items) {
+        const mapping = {
+            'klasik_durum':   { 'Lavaş': 1, 'Çiğköfte Malzeme': 0.1, 'Ayran': 0.2 },
+            'spicy_durum':    { 'Lavaş': 1, 'Çiğköfte Malzeme': 0.1, 'Ayran': 0.2 },
+            'cigkofte_yarim': { 'Çiğköfte Malzeme': 0.5, 'Ayran': 1 },
+            'cigkofte_kilo':  { 'Çiğköfte Malzeme': 1.0, 'Ayran': 1 },
+            'tost_karisik':   { 'Lavaş': 1 }, // Tost ekmeği yerine lavaş sayıyoruz basite indirgemek için
+            'midye_yarim':    { 'Midye': 0.5 },
+            'midye_kilo':     { 'Midye': 1.0 },
+            'ayran_litre':    { 'Ayran': 1.0 }
+        };
+
+        for (let itemId in items) {
+            const qty = items[itemId];
+            const usage = mapping[itemId];
+            if (usage) {
+                for (let stockItem in usage) {
+                    const amount = usage[stockItem] * qty;
+                    // Supabase RPC veya direkt update (SQL: quantity = quantity - X)
+                    // Not: Supabase JS client direkt "decrement" desteklemez, RPC kullanmak daha iyidir 
+                    // ama şimdilik hızlı çözüm için basit update yapıyoruz.
+                    const { data: current } = await sbClient.from('stock').select('quantity').eq('item_name', stockItem).single();
+                    if (current) {
+                        await sbClient.from('stock').update({ quantity: current.quantity - amount }).eq('item_name', stockItem);
+                    }
+                }
+            }
         }
     }
 

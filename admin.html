@@ -179,14 +179,11 @@
 
     <script>
         const ADMIN_PASS = "Baki.1903";
-        // SUPABASE KONFIGURASYONU (Müşteriden gelecek)
-        const SB_URL = "PROJE_URL_BURAYA";
-        const SB_KEY = "ANON_KEY_BURAYA";
+        // SUPABASE KONFIGURASYONU
+        const SB_URL = "https://vkyxyovcveqlrxsxgyui.supabase.co";
+        const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdWJhc2UiLCJhdWQiOiJhbm9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQ1MjM0NjAsImV4cCI6MjAzMDA5OTQ2MH0.6IkpXVf-H3EOBtIQ_-wGdHCPClNWzvFawyJ108";
         
-        let sbClient = null;
-        if(SB_URL !== "PROJE_URL_BURAYA") {
-            sbClient = supabase.createClient(SB_URL, SB_KEY);
-        }
+        const sbClient = supabase.createClient(SB_URL, SB_KEY);
 
         function checkAuth() {
             const pass = document.getElementById('adminPass').value;
